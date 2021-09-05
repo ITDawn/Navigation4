@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         secondVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage.init(systemName: "person.crop.circle.fill"), tag: 1)
         let firstNavController = UINavigationController(rootViewController: firstVC)
         let secNavController = UINavigationController(rootViewController: secondVC)
-        secNavController.navigationBar.isHidden = true
+        secNavController.setNavigationBarHidden(true, animated: true)
         tabBarController.viewControllers = [firstNavController,secNavController]
         window?.rootViewController = tabBarController
         

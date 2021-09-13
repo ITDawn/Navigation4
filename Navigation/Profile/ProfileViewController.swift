@@ -9,14 +9,12 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    
-    var cellId = ["cellId","cellId2","cellId3","cellId4"]
-    
-
-
     let myView = ProfileHeaderView()
-    
-    let tableView = UITableView(frame: .zero, style: .plain)
+    let cellID = "cellID"
+    private let tableView:UITableView = {
+        let table = UITableView(frame: .zero, style: .grouped)
+        return table
+    }()
  
     override func viewWillLayoutSubviews() {
         self.view.addSubview(myView)
@@ -36,16 +34,16 @@ class ProfileViewController: UIViewController {
         self.title = "My profile"
         setupTableView()
         setupConstraints()
+        
     }
+    
+    
     
     func setupTableView() {
         view.addSubview(tableView)
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: cellID)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId[0])
-        tableView.register(TableViewCell2.self, forCellReuseIdentifier: cellId[1])
-        tableView.register(TableViewCell3.self, forCellReuseIdentifier: cellId[2])
-        tableView.register(TableViewCell4.self, forCellReuseIdentifier: cellId[3])
-
+        tableView.delegate = self
         tableView.dataSource = self
     }
     
@@ -66,31 +64,25 @@ class ProfileViewController: UIViewController {
 }
 
 
-extension ProfileViewController: UITableViewDataSource {
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+   
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        return 1
         
     }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
+        return 4
+        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var cell = UITableViewCell()
-        if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier:  cellId[0], for: indexPath)
-        } else if indexPath.section == 1 {
-            cell = tableView.dequeueReusableCell(withIdentifier:  cellId[1], for: indexPath)
-        } else if indexPath.section == 2 {
-            cell = tableView.dequeueReusableCell(withIdentifier:  cellId[2], for: indexPath)
-        } else if indexPath.section == 3 {
-            cell = tableView.dequeueReusableCell(withIdentifier:  cellId[3], for: indexPath)
-        }
- 
-    return cell
-        
-    }
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
+        cell.post = Storage.arrayOfPosts[indexPath.row]
+           return cell
+}
 
 }
+

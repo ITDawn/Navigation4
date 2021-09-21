@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		082DA09926CDABC1009C8252 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082DA09826CDABC1009C8252 /* LogInViewController.swift */; };
-		084BF9D226B7E75B000CB390 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084BF9D126B7E75B000CB390 /* ProfileHeaderView.swift */; };
 		086A854126F97E3A00BF90A8 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A854026F97E3A00BF90A8 /* ProfileTableViewCell.swift */; };
 		087AE0BB26B1E02D00BF8CF5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AE0BA26B1E02D00BF8CF5 /* InfoViewController.swift */; };
 		0891756226EED8BF0006A90F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891756126EED8BF0006A90F /* PhotosViewController.swift */; };
@@ -27,7 +26,6 @@
 
 /* Begin PBXFileReference section */
 		082DA09826CDABC1009C8252 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		084BF9D126B7E75B000CB390 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		086A854026F97E3A00BF90A8 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		087AE0BA26B1E02D00BF8CF5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		0891756126EED8BF0006A90F /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -60,8 +58,8 @@
 		084BF9CE26B7E6F6000CB390 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				086A854026F97E3A00BF90A8 /* ProfileTableViewCell.swift */,
 				08EE506526B0926200FC87B3 /* ProfileViewController.swift */,
-				084BF9D126B7E75B000CB390 /* ProfileHeaderView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -70,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				0891756326EEDC460006A90F /* PhotosTableViewCell.swift */,
-				086A854026F97E3A00BF90A8 /* ProfileTableViewCell.swift */,
 				08D7DBE226E81DF700C066C4 /* TableViewCell.swift */,
 			);
 			path = TableView;
@@ -211,7 +208,6 @@
 				0891756426EEDC460006A90F /* PhotosTableViewCell.swift in Sources */,
 				0891756226EED8BF0006A90F /* PhotosViewController.swift in Sources */,
 				08D7DBE526E8429500C066C4 /* Storage.swift in Sources */,
-				084BF9D226B7E75B000CB390 /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

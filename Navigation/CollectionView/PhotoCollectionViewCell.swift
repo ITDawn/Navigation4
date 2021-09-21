@@ -40,14 +40,12 @@ extension PhotoCollectionViewCell {
     private func setupViews(){
         contentView.addSubview(PhotoImageView)
         
-        
-        
         let constraints = [
             
-            PhotoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            PhotoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            PhotoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            PhotoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            PhotoImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8),
+            PhotoImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            PhotoImageView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            PhotoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
             
         ]
         

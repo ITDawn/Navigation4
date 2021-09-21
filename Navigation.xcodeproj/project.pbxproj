@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		082DA09926CDABC1009C8252 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082DA09826CDABC1009C8252 /* LogInViewController.swift */; };
 		084BF9D226B7E75B000CB390 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084BF9D126B7E75B000CB390 /* ProfileHeaderView.swift */; };
+		086A854126F97E3A00BF90A8 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A854026F97E3A00BF90A8 /* ProfileTableViewCell.swift */; };
 		087AE0BB26B1E02D00BF8CF5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AE0BA26B1E02D00BF8CF5 /* InfoViewController.swift */; };
 		0891756226EED8BF0006A90F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891756126EED8BF0006A90F /* PhotosViewController.swift */; };
 		0891756426EEDC460006A90F /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891756326EEDC460006A90F /* PhotosTableViewCell.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		082DA09826CDABC1009C8252 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		084BF9D126B7E75B000CB390 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		086A854026F97E3A00BF90A8 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		087AE0BA26B1E02D00BF8CF5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		0891756126EED8BF0006A90F /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		0891756326EEDC460006A90F /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
@@ -58,17 +60,37 @@
 		084BF9CE26B7E6F6000CB390 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				084BF9D126B7E75B000CB390 /* ProfileHeaderView.swift */,
-				08D7DBE426E8429500C066C4 /* Storage.swift */,
-				08D7DBE226E81DF700C066C4 /* TableViewCell.swift */,
-				0891756126EED8BF0006A90F /* PhotosViewController.swift */,
-				08C29BF426F50D6D00B4DA1D /* PhotoCollectionViewCell.swift */,
 				08EE506526B0926200FC87B3 /* ProfileViewController.swift */,
-				08EE506726B0A0F400FC87B3 /* PostViewController.swift */,
-				0891756326EEDC460006A90F /* PhotosTableViewCell.swift */,
-				082DA09826CDABC1009C8252 /* LogInViewController.swift */,
+				084BF9D126B7E75B000CB390 /* ProfileHeaderView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		086A854226F9C75C00BF90A8 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				0891756326EEDC460006A90F /* PhotosTableViewCell.swift */,
+				086A854026F97E3A00BF90A8 /* ProfileTableViewCell.swift */,
+				08D7DBE226E81DF700C066C4 /* TableViewCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		086A854326F9C7C400BF90A8 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				08D7DBE426E8429500C066C4 /* Storage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		086A854426F9C7D400BF90A8 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				08C29BF426F50D6D00B4DA1D /* PhotoCollectionViewCell.swift */,
+				0891756126EED8BF0006A90F /* PhotosViewController.swift */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		08EE504326AB5ABF00FC87B3 = {
@@ -94,7 +116,12 @@
 				08EE505126AB5ABF00FC87B3 /* SceneDelegate.swift */,
 				08EE506326B0924700FC87B3 /* FeedViewController.swift */,
 				087AE0BA26B1E02D00BF8CF5 /* InfoViewController.swift */,
+				08EE506726B0A0F400FC87B3 /* PostViewController.swift */,
+				082DA09826CDABC1009C8252 /* LogInViewController.swift */,
+				086A854326F9C7C400BF90A8 /* Storage */,
 				084BF9CE26B7E6F6000CB390 /* Profile */,
+				086A854426F9C7D400BF90A8 /* CollectionView */,
+				086A854226F9C75C00BF90A8 /* TableView */,
 				08EE505826AB5AC100FC87B3 /* Assets.xcassets */,
 				08EE505A26AB5AC100FC87B3 /* LaunchScreen.storyboard */,
 				08EE505D26AB5AC100FC87B3 /* Info.plist */,
@@ -172,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				082DA09926CDABC1009C8252 /* LogInViewController.swift in Sources */,
+				086A854126F97E3A00BF90A8 /* ProfileTableViewCell.swift in Sources */,
 				08EE505026AB5ABF00FC87B3 /* AppDelegate.swift in Sources */,
 				08EE505226AB5ABF00FC87B3 /* SceneDelegate.swift in Sources */,
 				087AE0BB26B1E02D00BF8CF5 /* InfoViewController.swift in Sources */,

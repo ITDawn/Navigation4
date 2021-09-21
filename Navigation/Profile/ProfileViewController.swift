@@ -8,64 +8,52 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
-    let myView: ProfileHeaderView = {
-        let view = ProfileHeaderView()
-        view.backgroundColor = .systemGray6
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
+    let storage = Storage.tableModel
     let cellID = "cellID"
-    
+    let profileID = "Profile"
     let idCell = "idCell"
-    let headerCell = "head"
     
     private let tableView:UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
+        let table = UITableView(frame: .zero, style: .insetGrouped)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.view.addSubview(myView)
         self.view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            
-            
-            myView.heightAnchor.constraint(equalTo: view.heightAnchor),
-            myView.widthAnchor.constraint(equalToConstant: 414),
-            myView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 280),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: -10),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: 10),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-            
         ])
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "My profile"
-        
+        view.backgroundColor = .systemGray5
+        tableView.backgroundColor = .systemGray5
+        tableView.separatorColor = .darkGray
         setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
+    
     private enum Section {
-        case Photo, Posts, Unknown
+        case Profile, Photo, Posts, Unknown
         
         init(section: Int){
             switch section {
             case 0:
-                self = .Photo
+                self = .Profile
             case 1:
+                self = .Photo
+            case 2:
                 self = .Posts
             default:
                 self = .Unknown
@@ -79,6 +67,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(tableView)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: cellID)
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: idCell)
+        tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: profileID)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -93,26 +82,29 @@ class ProfileViewController: UIViewController {
 
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        if (section == 0) {
-//            return myView
-//        }
-//        return nil
-//    }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
-    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+       
+        let headerView = UIView()
+        headerView.backgroundColor = view.backgroundColor
+        return headerView
+
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let photos = PhotosViewController()
-        photos.title = "Photos"
-        if indexPath.section == 0 {
+        photos.title = "Photo Gallery"
+        if indexPath.section == 1 {
             self.navigationController?.pushViewController(photos, animated: true)
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             tableView.deselectRow(at: indexPath, animated: true)
         }
-        
     }
     
     
@@ -121,7 +113,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return 1
         case 1:
-            return 4
+            return 1
+        case 2:
+            return storage[0].posts.count
         default:
             return 0
         }
@@ -133,21 +127,24 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         switch  Section(section: indexPath.section) {
+        case .Profile:
+            let cell = tableView.dequeueReusableCell(withIdentifier: profileID, for: indexPath) as! ProfileTableViewCell
+            return cell
         case .Photo:
             let cell = tableView.dequeueReusableCell(withIdentifier: idCell, for: indexPath) as! PhotosTableViewCell
-            cell.photo = Storage.tableModel[0].photos[indexPath.row]
+            cell.photo = storage[0].photos[indexPath.row]
             return cell
         case .Posts:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
-            cell.post = Storage.tableModel[0].posts[indexPath.row]
+            cell.post = storage[0].posts[indexPath.row]
+            cell.separatorInset.left = 10
+            cell.separatorInset.right = 10
+            cell.layoutMargins = UIEdgeInsets.zero
             return cell
         case .Unknown:
             return UITableViewCell()
             
         }
     }
-    
-    
-    
 }
 

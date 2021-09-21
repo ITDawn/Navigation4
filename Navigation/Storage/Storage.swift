@@ -15,6 +15,12 @@ struct Post {
   let views: String
 }
 
+struct Profile {
+    var avatarImage: UIImage
+}
+struct ProfileStorage {
+    static let photoss = [Profile(avatarImage: #imageLiteral(resourceName: "Lion"))]
+}
 struct Photo {
     let label: String
     let image: UIImage
@@ -23,11 +29,48 @@ struct Photo {
     let image4: UIImage
 }
 
+struct CollectionPhoto {
+    let image: UIImage
+}
+
 struct SectionPosts {
     let photos:[Photo]
     let posts:[Post]
+    
+}
+struct PhotoSection {
+    let imageCollect:[CollectionPhoto]
 }
 
+struct PhotoStorage {
+    static let photoModel = [
+        PhotoSection(imageCollect: [
+            CollectionPhoto(image: #imageLiteral(resourceName: "4")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "3")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "1")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "2")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "rick")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "Lion")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "jaguar")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "vedmak")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "2-1")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "3-1")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "4-1")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "8")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "9")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "10")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "12")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "7")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "11")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "5")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "13")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "6")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "14")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "15")),
+            CollectionPhoto(image: #imageLiteral(resourceName: "16"))
+        ])
+    ]
+}
 
 struct Storage {
   static let tableModel = [

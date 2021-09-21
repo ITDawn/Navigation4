@@ -1,13 +1,13 @@
 //
-//  ProfileHeaderView.swift
+//  ProfileTableViewCell.swift
 //  Navigation
 //
-//  Created by Dany on 02.08.2021.
+//  Created by Dany on 21.09.2021.
 //
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileTableViewCell: UITableViewCell {
     
     let fullNameLabel: UILabel = {
         let label = UILabel()
@@ -66,37 +66,48 @@ class ProfileHeaderView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-
+   private var text: String?
     
-
-    private var text: String?
-
-    override init(frame:CGRect) {
-        super.init(frame: frame)
-
+       
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super .init(style: style, reuseIdentifier: reuseIdentifier)
         self.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         self.statusTextField.addTarget(self, action: #selector(statusChancged(textField:)), for: .editingChanged )
+        setupViews()
+    }
+       
+       required init?(coder: NSCoder) {
+           super .init(coder: coder)
+           setupViews()
+       }
+   }
 
-        self.addSubview(fullNameLabel)
-        self.addSubview(statusLabel)
-        self.addSubview(avatarImageView)
-        self.addSubview(statusTextField)
-        self.addSubview(setStatusButton)
+   extension ProfileTableViewCell {
+       private func setupViews(){
+        
+        contentView.addSubview(avatarImageView)
+        contentView.addSubview(fullNameLabel)
+        contentView.addSubview(statusLabel)
+        contentView.addSubview(statusTextField)
+        contentView.addSubview(setStatusButton)
+        contentView.backgroundColor = .systemGray5
+          
 
-        NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+           let constraints = [
+            
+            avatarImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             avatarImageView.widthAnchor.constraint(equalToConstant: 110),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
-
-
-            fullNameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
+            
+            
+            fullNameLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16),
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            fullNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            fullNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
             statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 34),
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            statusLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
@@ -106,13 +117,13 @@ class ProfileHeaderView: UIView {
             setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
             setStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            setStatusButton.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -5),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50)
-           ] )
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+           ]
+           
+           NSLayoutConstraint.activate(constraints)
+       }
+    
     @objc
     private func buttonPressed() {
 
@@ -126,5 +137,5 @@ class ProfileHeaderView: UIView {
         text = textField?.text
 
         }
+ 
 }
-

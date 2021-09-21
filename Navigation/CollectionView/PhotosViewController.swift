@@ -19,12 +19,13 @@ class PhotosViewController: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: PhotoCollectionViewCell.self))
         return collectionView
     }()
     
     
-    private var tempStorage:[SectionPosts] = [] {
+    private var tempStorage:[PhotoSection] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -34,7 +35,7 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         view.addSubview(collectionView)
-        self.tempStorage = Storage.tableModel
+        self.tempStorage = PhotoStorage.photoModel
     }
     
     
@@ -42,7 +43,7 @@ class PhotosViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         NSLayoutConstraint.activate([
-            
+
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -59,14 +60,37 @@ extension PhotosViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.tempStorage[section].photos.count
+        return self.tempStorage[section].imageCollect.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotoCollectionViewCell.self), for: indexPath) as! PhotoCollectionViewCell
-        cell.photo = self.tempStorage[indexPath.section].photos[indexPath.row]
+        cell.photo = self.tempStorage[indexPath.section].imageCollect[indexPath.row]
         return cell
     }
     
+    
+}
+
+extension PhotosViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 132, height: 130)
+    }
+    
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    }
     
 }

@@ -15,7 +15,8 @@ class FeedViewController: UIViewController {
         let button1:UIButton = {
             let button = UIButton()
             button.setTitle("Post", for: .normal)
-            button.backgroundColor = .black
+            button.backgroundColor = .lightGray
+            button.layer.cornerRadius = 10
             button.addTarget(self, action: #selector(tap), for: .touchUpInside)
             return button
         }()
@@ -23,6 +24,7 @@ class FeedViewController: UIViewController {
         let button2: UIButton = {
             let button = UIButton()
             button.setTitle("Post Information", for: .normal)
+            button.layer.cornerRadius = 10
             button.backgroundColor = .darkGray
             button.addTarget(self, action: #selector(tap), for: .touchUpInside)
             return button

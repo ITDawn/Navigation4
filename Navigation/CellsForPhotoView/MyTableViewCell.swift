@@ -9,7 +9,7 @@ import UIKit
 
 class MyTableViewCell: UITableViewCell {
     
-   
+    
     let identifier = "MyCell"
     
     private lazy var collectionView: UICollectionView = {
@@ -32,7 +32,7 @@ class MyTableViewCell: UITableViewCell {
         
         return strelka
     }()
-   
+    
     
     
     var titleLabel:UILabel = {
@@ -67,7 +67,7 @@ extension MyTableViewCell {
         contentView.addSubview(collectionView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(strelka)
-
+        
         
         self.tempStorage = PhotoStorage.photoModel
         
@@ -112,7 +112,7 @@ extension MyTableViewCell: UICollectionViewDelegate , UICollectionViewDataSource
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         return CGSize(width: collectionView.frame.height / 2 + 26 , height: collectionView.frame.height / 2 + 45 )
     }
     

@@ -23,7 +23,7 @@ class MyCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 16
         return imageView
     }()
- 
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,14 +35,14 @@ class MyCollectionViewCell: UICollectionViewCell {
     }
     
 }
-    
+
 extension MyCollectionViewCell {
     
     private func setupViews(){
         contentView.addSubview(photoImageView)
         
         let constraints = [
-
+            
             photoImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
             photoImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
             photoImageView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),

@@ -9,9 +9,9 @@ import UIKit
 
 class LogInViewController: UIViewController {
     let contentView = UIView()
-
     
-   
+    
+    
     let button: UIButton = {
         let button = UIButton()
         button.setTitle("Log in", for: .normal)
@@ -26,7 +26,7 @@ class LogInViewController: UIViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         return logo
     }()
-   
+    
     let userNameText: UITextField = {
         let textField = UITextField()
         let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
@@ -66,7 +66,7 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-
+    
     let scrollView:UIScrollView = {
         let scroll = UIScrollView()
         scroll.backgroundColor = .white
@@ -123,7 +123,7 @@ class LogInViewController: UIViewController {
             button.heightAnchor.constraint(equalToConstant: 50)
             
         ])
-
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -143,9 +143,9 @@ class LogInViewController: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        
     }
-   
+    
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {

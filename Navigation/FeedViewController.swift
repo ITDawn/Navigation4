@@ -8,7 +8,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,7 +20,7 @@ class FeedViewController: UIViewController {
             button.addTarget(self, action: #selector(tap), for: .touchUpInside)
             return button
         }()
-                      view.addSubview(button1)
+        view.addSubview(button1)
         let button2: UIButton = {
             let button = UIButton()
             button.setTitle("Post Information", for: .normal)
@@ -29,8 +29,8 @@ class FeedViewController: UIViewController {
             button.addTarget(self, action: #selector(tap), for: .touchUpInside)
             return button
         }()
-              view.addSubview(button2)
-       
+        view.addSubview(button2)
+        
         let stackView = UIStackView(arrangedSubviews: [button1,button2])
         stackView.axis = .vertical
         stackView.spacing = 10
@@ -41,7 +41,7 @@ class FeedViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
         ])
-
+        
         
         self.title = "Feed"
     }

@@ -21,9 +21,9 @@ class InfoViewController: UIViewController {
             return button
         }()
         view.addSubview(button)
-       
+        
     }
-
+    
     @objc func alert(_ sender: Any) {
         let alertVc = UIAlertController(title: "Error", message: "Nowhere to go", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { _ in

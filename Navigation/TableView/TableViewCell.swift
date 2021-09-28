@@ -20,77 +20,77 @@ class TableViewCell: UITableViewCell {
     }
     
     
-
+    
     var deviceImageView:UIImageView = {
-           let imageView = UIImageView()
-           imageView.translatesAutoresizingMaskIntoConstraints = false
-           imageView.contentMode = .scaleAspectFit
-           imageView.clipsToBounds = true
-           imageView.backgroundColor = .black
-           return imageView
-       }()
-
-       var titleLabel:UILabel = {
-           let label = UILabel()
-           label.numberOfLines = 2
-           label.translatesAutoresizingMaskIntoConstraints = false
-           label.textColor = .black
-           label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-           return label
-       }()
-       
-       
-       
-       var descriptionLabel:UILabel = {
-           let label = UILabel()
-           label.lineBreakMode = .byWordWrapping
-           label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-           label.numberOfLines = 0
-           label.translatesAutoresizingMaskIntoConstraints = false
-           label.textColor = .systemGray
-           return label
-       }()
-       
-       
-       
-       
-       var likesLabel:UILabel = {
-           let label = UILabel()
-           label.translatesAutoresizingMaskIntoConstraints = false
-           label.textColor = .black
-           label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-           return label
-       }()
-       
-       var viewsLabel:UILabel = {
-           let label = UILabel()
-           label.translatesAutoresizingMaskIntoConstraints = false
-           label.textColor = .black
-           label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-           return label
-       }()
-       
-       override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-           super .init(style: style, reuseIdentifier: reuseIdentifier)
-           setupViews()
-       }
-       
-       required init?(coder: NSCoder) {
-           super .init(coder: coder)
-           setupViews()
-       }
-       
-   }
-   extension TableViewCell {
-       private func setupViews(){
-           contentView.addSubview(deviceImageView)
-           contentView.addSubview(titleLabel)
-           contentView.addSubview(descriptionLabel)
-           contentView.addSubview(likesLabel)
-           contentView.addSubview(viewsLabel)
-
-           let constraints = [
-
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.backgroundColor = .black
+        return imageView
+    }()
+    
+    var titleLabel:UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 2
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        return label
+    }()
+    
+    
+    
+    var descriptionLabel:UILabel = {
+        let label = UILabel()
+        label.lineBreakMode = .byWordWrapping
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .systemGray
+        return label
+    }()
+    
+    
+    
+    
+    var likesLabel:UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        return label
+    }()
+    
+    var viewsLabel:UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        return label
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super .init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        super .init(coder: coder)
+        setupViews()
+    }
+    
+}
+extension TableViewCell {
+    private func setupViews(){
+        contentView.addSubview(deviceImageView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(likesLabel)
+        contentView.addSubview(viewsLabel)
+        
+        let constraints = [
+            
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
@@ -112,11 +112,11 @@ class TableViewCell: UITableViewCell {
             viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             
-
-           ]
-           
-           NSLayoutConstraint.activate(constraints)
-       }
-   }
+            
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+}
 
 

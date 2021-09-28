@@ -12,7 +12,6 @@ class ProfileViewController: UIViewController {
     let storage = Storage.tableModel
     let cellID = "cellID"
     let profileID = "Profile"
-    
     let myCell = "MyCell"
     
     private let tableView:UITableView = {
@@ -21,9 +20,15 @@ class ProfileViewController: UIViewController {
         return table
     }()
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "My profile"
         self.view.addSubview(tableView)
+        view.backgroundColor = .systemGray5
+        tableView.backgroundColor = .systemGray5
+        tableView.separatorColor = .darkGray
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: -10),
@@ -31,15 +36,8 @@ class ProfileViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "My profile"
-        view.backgroundColor = .systemGray5
-        tableView.backgroundColor = .systemGray5
-        tableView.separatorColor = .darkGray
         setupTableView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,16 +83,16 @@ class ProfileViewController: UIViewController {
 
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-       
+        
         let headerView = UIView()
         headerView.backgroundColor = view.backgroundColor
         return headerView
-
+        
     }
     
     
@@ -134,7 +132,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         switch  Section(section: indexPath.section) {
         case .Profile:
             let cell = tableView.dequeueReusableCell(withIdentifier: profileID, for: indexPath) as! ProfileTableViewCell
-           
+            
             cell.avatarImageView.animationImages = [
                 UIImage(named: "jaguar"),
                 UIImage(named: "rick"),

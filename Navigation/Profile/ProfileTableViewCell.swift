@@ -17,7 +17,7 @@ class ProfileTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     let setStatusButton: UIButton = {
         let button = UIButton()
         button.setTitle("Show status", for: .normal)
@@ -30,7 +30,7 @@ class ProfileTableViewCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
     var statusLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -39,7 +39,7 @@ class ProfileTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     let avatarImageView: UIImageView = {
         let avatar = UIImageView(image: UIImage(named: "Lion"))
         avatar.layer.borderWidth = 5
@@ -49,7 +49,7 @@ class ProfileTableViewCell: UITableViewCell {
         avatar.translatesAutoresizingMaskIntoConstraints = false
         return avatar
     }()
-
+    
     var statusTextField: UITextField = {
         var textField = UITextField()
         let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
@@ -66,23 +66,23 @@ class ProfileTableViewCell: UITableViewCell {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-   private var text: String?
+    private var text: String?
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         self.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         self.statusTextField.addTarget(self, action: #selector(statusChancged(textField:)), for: .editingChanged )
-
+        
         setupViews()
     }
-       
-       required init?(coder: NSCoder) {
-           super .init(coder: coder)
-           setupViews()
-       }
-   }
+    
+    required init?(coder: NSCoder) {
+        super .init(coder: coder)
+        setupViews()
+    }
+}
 
-   extension ProfileTableViewCell {
-       private func setupViews(){
+extension ProfileTableViewCell {
+    private func setupViews(){
         
         contentView.addSubview(avatarImageView)
         contentView.addSubview(fullNameLabel)
@@ -90,9 +90,9 @@ class ProfileTableViewCell: UITableViewCell {
         contentView.addSubview(statusTextField)
         contentView.addSubview(setStatusButton)
         contentView.backgroundColor = .systemGray5
-          
-
-           let constraints = [
+        
+        
+        let constraints = [
             
             avatarImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16),
             avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -103,38 +103,38 @@ class ProfileTableViewCell: UITableViewCell {
             fullNameLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16),
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             fullNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-
+            
             statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 34),
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             statusLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-
+            
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             statusTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
-
+            
             setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
             setStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             setStatusButton.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -5),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50)
-           ]
-           
-           NSLayoutConstraint.activate(constraints)
-       }
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
     
     @objc
     private func buttonPressed() {
-
+        
         statusLabel.text = text
         print("\(statusLabel.text ?? "Status clear")")
-
-        }
-
+        
+    }
+    
     @objc func statusChancged(textField: UITextField?) {
-
+        
         text = textField?.text
-
-        }
- 
+        
+    }
+    
 }

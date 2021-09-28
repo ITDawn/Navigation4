@@ -8,13 +8,13 @@
 import UIKit
 
 class PostViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Post"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(tap))
-
-    
+        
+        
     }
     @objc func tap() {
         let vc = InfoViewController()

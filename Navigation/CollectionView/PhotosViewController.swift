@@ -30,29 +30,22 @@ class PhotosViewController: UIViewController {
             collectionView.reloadData()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         view.addSubview(collectionView)
         self.tempStorage = PhotoStorage.photoModel
-    }
-    
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
         NSLayoutConstraint.activate([
-
+            
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-
+            
         ])
-        
     }
-
+    
 }
 extension PhotosViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -76,7 +69,7 @@ extension PhotosViewController: UICollectionViewDataSource {
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         return CGSize(width: collectionView.frame.width / 3 - 6, height: collectionView.frame.width / 3 + 2)
     }
     

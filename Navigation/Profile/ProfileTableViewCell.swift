@@ -67,12 +67,11 @@ class ProfileTableViewCell: UITableViewCell {
         return textField
     }()
    private var text: String?
-    
-       
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         self.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         self.statusTextField.addTarget(self, action: #selector(statusChancged(textField:)), for: .editingChanged )
+
         setupViews()
     }
        

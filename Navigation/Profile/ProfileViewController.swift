@@ -8,10 +8,12 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
     let storage = Storage.tableModel
     let cellID = "cellID"
     let profileID = "Profile"
-    let idCell = "idCell"
+    
+    let myCell = "MyCell"
     
     private let tableView:UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
@@ -66,10 +68,11 @@ class ProfileViewController: UIViewController {
     func setupTableView() {
         view.addSubview(tableView)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: cellID)
-        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: idCell)
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: profileID)
+        tableView.register(MyTableViewCell.self, forCellReuseIdentifier: myCell)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableView.automaticDimension
         
     }
     
@@ -93,9 +96,12 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         return headerView
 
     }
+    
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let photos = PhotosViewController()
@@ -122,21 +128,31 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         switch  Section(section: indexPath.section) {
         case .Profile:
             let cell = tableView.dequeueReusableCell(withIdentifier: profileID, for: indexPath) as! ProfileTableViewCell
+           
+            cell.avatarImageView.animationImages = [
+                UIImage(named: "jaguar"),
+                UIImage(named: "rick"),
+                UIImage(named: "pukin"),
+                UIImage(named: "7"),
+                UIImage(named: "Lion")
+            ] as? [UIImage]
+            cell.avatarImageView.animationDuration = 10
+            cell.avatarImageView.startAnimating()
             return cell
         case .Photo:
-            let cell = tableView.dequeueReusableCell(withIdentifier: idCell, for: indexPath) as! PhotosTableViewCell
-            cell.photo = storage[0].photos[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: myCell, for: indexPath) as! MyTableViewCell
+            cell.selectionStyle = .none
             return cell
         case .Posts:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
             cell.post = storage[0].posts[indexPath.row]
+            cell.selectionStyle = .none
             cell.separatorInset.left = 10
             cell.separatorInset.right = 10
             cell.layoutMargins = UIEdgeInsets.zero
@@ -147,4 +163,3 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 }
-

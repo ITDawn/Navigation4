@@ -1,29 +1,29 @@
 //
-//  CollectionViewCell.swift
+//  MyCollectionViewCell.swift
 //  Navigation
 //
-//  Created by Dany on 17.09.2021.
+//  Created by Dany on 27.09.2021.
 //
 
 import UIKit
 
-class PhotoCollectionViewCell: UICollectionViewCell {
+class MyCollectionViewCell: UICollectionViewCell {
+    
+    
     var photo: CollectionPhoto? {
         didSet {
             photoImageView.image = photo?.image
         }
     }
-    
-    
-    
     var photoImageView:UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
         imageView.backgroundColor = .black
+        imageView.layer.cornerRadius = 16
         return imageView
     }()
-    
+ 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,21 +35,20 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
 }
-extension PhotoCollectionViewCell {
+    
+extension MyCollectionViewCell {
     
     private func setupViews(){
         contentView.addSubview(photoImageView)
         
         let constraints = [
-            
-            photoImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8),
-            photoImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            photoImageView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
-            
+
+            photoImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+            photoImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
+            photoImageView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
+            photoImageView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)
     }
-    
 }

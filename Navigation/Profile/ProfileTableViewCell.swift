@@ -9,6 +9,7 @@ import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
     
+    
     let fullNameLabel: UILabel = {
         let label = UILabel()
         label.text = "King Lion"
@@ -42,6 +43,7 @@ class ProfileTableViewCell: UITableViewCell {
     
     let avatarImageView: UIImageView = {
         let avatar = UIImageView(image: UIImage(named: "Lion"))
+        avatar.isUserInteractionEnabled = true
         avatar.layer.borderWidth = 5
         avatar.layer.borderColor = UIColor.white.cgColor
         avatar.layer.cornerRadius = 55
@@ -71,6 +73,9 @@ class ProfileTableViewCell: UITableViewCell {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         self.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         self.statusTextField.addTarget(self, action: #selector(statusChancged(textField:)), for: .editingChanged )
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animate(tapGestureRecognizer:)))
+      //  self.avatarImageView.addGestureRecognizer(tapGesture)
         
         setupViews()
     }
@@ -137,4 +142,39 @@ extension ProfileTableViewCell {
         
     }
     
-}
+    @objc func avatarTapped(tapGestuRerecognizer: UITapGestureRecognizer) {
+        isSelected.toggle()
+        print("avatar changed")
+        avatarImageView.image = isSelected ? UIImage(named: "Lion") : UIImage(named: "pukin")
+    }
+    
+    @objc func animate(tapGestureRecognizer: UITapGestureRecognizer) {
+            print("helooooooooooooo")
+            
+            UIImageView.animateKeyframes(withDuration: 0.5, delay: 0, options: [],
+                                         animations: {
+                                            UIImageView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 2) {
+                                               
+                                                
+                                                print("sasajdkaj")
+                                                self.avatarImageView.contentMode = .scaleToFill
+                                                
+                                                self.avatarImageView.frame = CGRect(x: 16, y: 100, width: 500, height: 500)
+                                               
+                                                
+                                            }
+                                         }, completion: {
+                                            finished in
+                                            
+    //                                        UIImageView.animate(withDuration: 0) {
+    //                                            self.button.isHidden = false
+    //                                            self.coloroView.layer.borderWidth = 0
+    //                                            self.coloroView.layer.cornerRadius = 30
+    //
+    //                                        }
+                                         })
+        }
+//        print("super")
+//        avatarImageView.transform = isSelected ? avatarImageView.transform.scaledBy(x: 2, y: 2) : avatarImageView.transform.scaledBy(x: -2, y: -2)
+        }
+

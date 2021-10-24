@@ -6,8 +6,20 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(animate))
+    let avatarImageView: UIImageView = {
+        let avatar = UIImageView(image: UIImage(named: "Lion"))
+        avatar.isUserInteractionEnabled = true
+        avatar.layer.borderWidth = 5
+        avatar.layer.borderColor = UIColor.white.cgColor
+        avatar.layer.cornerRadius = 55
+        avatar.clipsToBounds = true
+        avatar.translatesAutoresizingMaskIntoConstraints = false
+        return avatar
+    }()
     
     let storage = Storage.tableModel
     let cellID = "cellID"
@@ -23,14 +35,27 @@ class ProfileViewController: UIViewController {
     
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
+        self.view.backgroundColor = .systemGray5
+        #if DEBUG
+        tableView.backgroundColor = .systemGreen
+        #else
+        tableView.backgroundColor = .systemGray5
+        #endif
+        
         self.title = "My profile"
         self.view.addSubview(tableView)
-        view.backgroundColor = .systemGray5
-        tableView.backgroundColor = .systemGray5
         tableView.separatorColor = .darkGray
+        tableView.addSubview(avatarImageView)
+        avatarImageView.addGestureRecognizer(gesture)
         
         NSLayoutConstraint.activate([
+            avatarImageView.topAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.topAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 16),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 110),
+            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
+            
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: -10),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: 10),
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),
@@ -39,6 +64,7 @@ class ProfileViewController: UIViewController {
         setupTableView()
         
     }
+        
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -73,7 +99,7 @@ class ProfileViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
     }
-    
+   
     
     @objc func tap() {
         let vc = LogInViewController()
@@ -127,21 +153,14 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        func tapp() {
+            
+        }
         
         switch  Section(section: indexPath.section) {
         case .Profile:
             let cell = tableView.dequeueReusableCell(withIdentifier: profileID, for: indexPath) as! ProfileTableViewCell
-            
-            cell.avatarImageView.animationImages = [
-                UIImage(named: "jaguar"),
-                UIImage(named: "rick"),
-                UIImage(named: "pukin"),
-                UIImage(named: "7"),
-                UIImage(named: "Lion")
-            ] as? [UIImage]
-            cell.avatarImageView.animationDuration = 10
-            cell.avatarImageView.startAnimating()
+     
             return cell
         case .Photo:
             let cell = tableView.dequeueReusableCell(withIdentifier: myCell, for: indexPath) as! MyTableViewCell
@@ -160,4 +179,26 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             
         }
     }
+    @objc func animate(tapGestureRecognizer: UITapGestureRecognizer) {
+            print("helooooooooooooo")
+            
+            UIImageView.animateKeyframes(withDuration: 0.5, delay: 0, options: [],
+                                         animations: {
+                                            UIImageView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 2) {
+                                                NSLayoutConstraint.activate([
+                                                    self.avatarImageView.widthAnchor.constraint(equalToConstant: 500)
+                                                ])
+                                            }
+                                         }, completion: {
+                                            finished in
+                                            
+    //                                        UIImageView.animate(withDuration: 0) {
+    //                                            self.button.isHidden = false
+    //                                            self.coloroView.layer.borderWidth = 0
+    //                                            self.coloroView.layer.cornerRadius = 30
+    //
+    //                                        }
+                                         })
+        }
 }
+

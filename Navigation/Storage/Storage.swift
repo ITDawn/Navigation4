@@ -7,43 +7,43 @@
 
 import UIKit
 
-struct Post {
-    let author: String
-    let description: String
-    let image: UIImage
-    let likes: String
-    let views: String
+public struct Post {
+   public let author: String
+   public let description: String
+   public let image: UIImage
+   public let likes: String
+   public let views: String
 }
 
-struct Profile {
-    var avatarImage: UIImage
+public struct Profile {
+   public var avatarImage: UIImage
 }
-struct ProfileStorage {
-    static let photoss = [Profile(avatarImage: #imageLiteral(resourceName: "Lion"))]
+public struct ProfileStorage {
+   public static let photoss = [Profile(avatarImage: #imageLiteral(resourceName: "Lion"))]
 }
-struct Photo {
-    let label: String
-    let image: UIImage
-    let image2: UIImage
-    let image3: UIImage
-    let image4: UIImage
-}
-
-struct CollectionPhoto {
-    let image: UIImage
+public struct Photo {
+   public let label: String
+   public let image: UIImage
+   public let image2: UIImage
+   public let image3: UIImage
+   public let image4: UIImage
 }
 
-struct SectionPosts {
-    let photos:[Photo]
-    let posts:[Post]
+public struct CollectionPhoto {
+  public  let image: UIImage
+}
+
+public struct SectionPosts {
+   public let photos:[Photo]
+   public let posts:[Post]
     
 }
-struct PhotoSection {
-    let imageCollect:[CollectionPhoto]
+public struct PhotoSection {
+    public let imageCollect:[CollectionPhoto]
 }
 
-struct PhotoStorage {
-    static let photoModel = [
+public struct PhotoStorage {
+   public static let photoModel = [
         PhotoSection(imageCollect: [
             CollectionPhoto(image: #imageLiteral(resourceName: "4")),
             CollectionPhoto(image: #imageLiteral(resourceName: "3")),
@@ -72,8 +72,8 @@ struct PhotoStorage {
     ]
 }
 
-struct Storage {
-    static let tableModel = [
+public struct Storage {
+ public   static let tableModel = [
         SectionPosts(photos: [
             Photo(label: "Photos", image: #imageLiteral(resourceName: "4"), image2: #imageLiteral(resourceName: "3"), image3: #imageLiteral(resourceName: "1"), image4: #imageLiteral(resourceName: "2"))
         ],

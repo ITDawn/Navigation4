@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import StorageService
 
 class TableViewCell: UITableViewCell {
     
-    var post: Post? {
+   var post: Post? {
+        
         didSet {
             deviceImageView.image = post?.image
             titleLabel.text = post?.author

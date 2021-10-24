@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class MyTableViewCell: UITableViewCell {
     
@@ -110,9 +111,8 @@ extension MyTableViewCell: UICollectionViewDelegate , UICollectionViewDataSource
     }
     
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         return CGSize(width: collectionView.frame.height / 2 + 26 , height: collectionView.frame.height / 2 + 45 )
     }
     

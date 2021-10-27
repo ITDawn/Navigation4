@@ -41,7 +41,6 @@ extension MyCollectionViewCell {
     
     private func setupViews(){
         contentView.addSubview(photoImageView)
-        
         let constraints = [
             
             photoImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),

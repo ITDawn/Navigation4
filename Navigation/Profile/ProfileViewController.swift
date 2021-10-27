@@ -13,8 +13,7 @@ class ProfileViewController: UIViewController {
     private var text: String?
     let viewForTable: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
-        view.alpha = 0.5
+        view.backgroundColor = .none
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
@@ -23,7 +22,7 @@ class ProfileViewController: UIViewController {
         let button = UIButton()
         button.layer.cornerRadius = 25
         button.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
-        button.imageView?.tintColor = .systemGray2
+        button.imageView?.tintColor = .systemGray
         button.imageView?.contentMode = .scaleAspectFill
         button.translatesAutoresizingMaskIntoConstraints = false
         button.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
@@ -70,8 +69,6 @@ class ProfileViewController: UIViewController {
         avatar.layer.borderColor = UIColor.white.cgColor
         avatar.layer.cornerRadius = 75
         avatar.clipsToBounds = true
-        
-       // avatar.translatesAutoresizingMaskIntoConstraints = false
         return avatar
     }()
     
@@ -169,7 +166,7 @@ class ProfileViewController: UIViewController {
         tableView.addSubview(setStatusButton)
         tableView.addSubview(statusLabel)
         tableView.addSubview(statusTextField)
-        tableView.addSubview(buttonX)
+        viewForTable.addSubview(buttonX)
         view.addSubview(viewForTable)
 //        avatarImageView.snp.makeConstraints { (make) -> Void in
 //            make.width.height.equalTo(150)
@@ -177,26 +174,26 @@ class ProfileViewController: UIViewController {
 //            make.left.equalToSuperview().inset(22)
 //        }
         viewForTable.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
+            make.top.equalToSuperview().inset(-7)
+            make.left.equalToSuperview().inset(-10)
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         fullNameLabel.snp.makeConstraints{ (make) -> Void in
             make.height.equalTo(60)
             make.top.equalToSuperview().inset(67)
-            make.left.equalTo(avatarImageView).inset(172)
+            make.left.equalToSuperview().inset(192)
             make.right.equalToSuperview().inset(22)
         }
         statusLabel.snp.makeConstraints {(make) -> Void in
             make.height.equalTo(30)
             make.top.equalTo(fullNameLabel).inset(62)
-            make.left.equalTo(avatarImageView).inset(172)
+            make.left.equalToSuperview().inset(192)
             make.right.equalToSuperview().inset(22)
         }
         statusTextField.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(statusLabel).inset(46)
-            make.left.equalTo(avatarImageView).inset(172)
+            make.left.equalToSuperview().inset(192)
             make.right.equalToSuperview().inset(22)
            make.height.equalTo(40)
         }
@@ -215,7 +212,7 @@ class ProfileViewController: UIViewController {
             make.bottom.equalToSuperview()
         }
         buttonX.snp.makeConstraints{ (make) -> Void in
-            make.top.equalToSuperview().inset(80)
+            make.top.equalToSuperview().inset(110)
             make.right.equalToSuperview().inset(40)
         }
 
@@ -227,16 +224,12 @@ class ProfileViewController: UIViewController {
         UIImageView.animateKeyframes(withDuration: 0.5, delay: 0, options: [],
                                      animations: {
                                         UIImageView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1) {
-//self.viewForTable.isHidden = false
-                                            self.tableView.alpha = 0.5
-                                            print("alpha table view is:\(self.tableView.alpha)")
+self.viewForTable.isHidden = false
+                                            self.viewForTable.addSubview(self.avatarImageView)
+                                            self.tableView.alpha = 0.6
                                             self.avatarImageView.contentMode = .scaleToFill
-                                            self.avatarImageView.frame = CGRect(x: 26, y: 120, width: self.view.frame.width - 32, height: self.view.frame.height - 220)
-                                            self.statusTextField.isHidden = true
-                                            self.setStatusButton.isHidden = true
-                                            self.fullNameLabel.isHidden = true
-                                            self.statusLabel.isHidden = true
-                                            
+                                            self.avatarImageView.frame = CGRect(x: 42, y: 150, width: 350, height: self.view.frame.height - 300)
+
                                         }
                                      }, completion: {
                                         finished in
@@ -261,7 +254,8 @@ class ProfileViewController: UIViewController {
     
     // Функция возвращающая аватар в исходное положение по нажатию на Х
     @objc func tappedX() {
-        
+        self.tableView.addSubview(self.avatarImageView)
+        self.viewForTable.isHidden = true
         UIImageView.animateKeyframes(withDuration: 0.5, delay: 0, options: [],
                                      animations: {
                                         self.tableView.alpha = 1

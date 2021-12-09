@@ -164,7 +164,17 @@ class LogInViewController: UIViewController {
     
     
     @objc func tap() {
+        if userNameText.text == "King Lion" {
         let vc = ProfileViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Wrong Username", message: nil, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel)
+            alert.addAction(cancelAction)
+            
+          
+            
+            self.present(alert, animated: true)
+        }
     }
 }

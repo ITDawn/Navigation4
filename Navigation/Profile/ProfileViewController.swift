@@ -8,9 +8,40 @@
 import UIKit
 import SnapKit
 import StorageService
+import iOSIntPackage
+
+class User {
+    var fullName: String?
+    var status: String?
+    var avatar: UIImage?
+    init(name:String, status: String, avatar: UIImage) {
+        self.fullName = name
+        self.status = status
+        self.avatar = avatar
+    }
+}
+let imageProccess = ImageProcessor()
+
+//
+//protocol UserService {
+//
+//    func add(name: String) -> User
+//}
+//final class CurrentUserService: UserService {
+//    func add(name: String) -> User {
+//        if user.fullName == name {
+//            return user
+//        } else {
+//            print("ОШИБКААААА")
+//        }
+//    }
+//var user = User(name: <#T##String#>, status: <#T##String#>, avatar: <#T##UIImage#>)
+//}
 
 class ProfileViewController: UIViewController {
+    
     private var text: String?
+    
     let viewForTable: UIView = {
         let view = UIView()
         view.backgroundColor = .none
@@ -101,7 +132,6 @@ class ProfileViewController: UIViewController {
     }()
     
     
-    
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -123,7 +153,7 @@ class ProfileViewController: UIViewController {
         tapGesture.numberOfTouchesRequired = 1
         avatarImageView.addGestureRecognizer(tapGesture)
         avatarImageView.frame = CGRect(x: 16, y: 67, width: 150, height: 150)
-
+       
         setupTableView()
         
     }
@@ -131,6 +161,7 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+      
     }
     
     private enum Section {
@@ -228,7 +259,7 @@ self.viewForTable.isHidden = false
                                             self.viewForTable.addSubview(self.avatarImageView)
                                             self.tableView.alpha = 0.6
                                             self.avatarImageView.contentMode = .scaleToFill
-                                            self.avatarImageView.frame = CGRect(x: 42, y: 150, width: 350, height: self.view.frame.height - 300)
+                                            self.avatarImageView.frame = CGRect(x: 42, y: 150, width: 350, height: 350)
 
                                         }
                                      }, completion: {
@@ -342,6 +373,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case .Posts:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
             cell.post = storage[0].posts[indexPath.row]
+            imageProccess.processImage(sourceImage: storage[0].posts[indexPath.row].image, filter: .colorInvert) { _ in
+                
+            }
             cell.selectionStyle = .none
             cell.separatorInset.left = 10
             cell.separatorInset.right = 10
@@ -353,5 +387,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 }
+
 
 

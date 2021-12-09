@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import StorageService
+import StorageService
 
 class StorageServiceTests: XCTestCase {
 

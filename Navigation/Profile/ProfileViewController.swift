@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 import StorageService
-//import iOSIntPackage
+import iOSIntPackage
 
 class User {
     var fullName: String?
@@ -20,7 +20,7 @@ class User {
         self.avatar = avatar
     }
 }
-//let imageProccess = ImageProcessor()
+let imageProccess = ImageProcessor()
 
 //
 //protocol UserService {
@@ -373,9 +373,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case .Posts:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
             cell.post = storage[0].posts[indexPath.row]
-//            imageProccess.processImage(sourceImage: storage[0].posts[indexPath.row].image, filter: .colorInvert) { _ in
-//
-//            }
+            imageProccess.processImage(sourceImage: storage[0].posts[indexPath.row].image, filter: .colorInvert) { _ in
+
+            }
             cell.selectionStyle = .none
             cell.separatorInset.left = 10
             cell.separatorInset.right = 10

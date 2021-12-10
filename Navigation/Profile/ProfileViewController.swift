@@ -20,6 +20,8 @@ class User {
         self.avatar = avatar
     }
 }
+
+
 let imageProccess = ImageProcessor()
 
 //
@@ -373,8 +375,10 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case .Posts:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
             cell.post = storage[0].posts[indexPath.row]
+            
+            
             imageProccess.processImage(sourceImage: storage[0].posts[indexPath.row].image, filter: .colorInvert) { _ in
-
+// что же тут надо написать)
             }
             cell.selectionStyle = .none
             cell.separatorInset.left = 10

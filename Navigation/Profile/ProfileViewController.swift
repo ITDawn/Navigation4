@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 import StorageService
-import iOSIntPackage
+//import iOSIntPackage
 
 class User {
     var fullName: String?
@@ -20,8 +20,12 @@ class User {
         self.avatar = avatar
     }
 }
+<<<<<<< Updated upstream
 public var avatar: UIImage?
 public var status1: String?
+=======
+//let imageProccess = ImageProcessor()
+>>>>>>> Stashed changes
 
 
 
@@ -394,11 +398,17 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case .Posts:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
             cell.post = storage[0].posts[indexPath.row]
+<<<<<<< Updated upstream
             
             
             imageProccess.processImage(sourceImage: storage[0].posts[indexPath.row].image, filter: .colorInvert) { _ in
 // что же тут надо написать)
             }
+=======
+//            imageProccess.processImage(sourceImage: storage[0].posts[indexPath.row].image, filter: .colorInvert) { _ in
+//
+//            }
+>>>>>>> Stashed changes
             cell.selectionStyle = .none
             cell.separatorInset.left = 10
             cell.separatorInset.right = 10

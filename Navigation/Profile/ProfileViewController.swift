@@ -20,29 +20,48 @@ class User {
         self.avatar = avatar
     }
 }
+public var avatar: UIImage?
+public var status1: String?
 
 
-let imageProccess = ImageProcessor()
 
-//
-//protocol UserService {
-//
-//    func add(name: String) -> User
-//}
-//final class CurrentUserService: UserService {
-//    func add(name: String) -> User {
-//        if user.fullName == name {
-//            return user
-//        } else {
-//            print("ОШИБКААААА")
-//        }
-//    }
-//var user = User(name: <#T##String#>, status: <#T##String#>, avatar: <#T##UIImage#>)
-//}
+protocol UserService {
+    func add(name: String) -> User
+}
+
+final class CurrentUserService: UserService {
+    var user = User(name: "King Lion", status: "Into the wild", avatar: UIImage(named: "Lion")!)
+    var user2 = User(name: "Test", status: "Test", avatar: UIImage())
+    func add(name: String) -> User {
+        if name == user.fullName {
+            status1 = "Into the wild"
+            avatar = UIImage(named: "Lion")
+        }
+        return user
+    }
+}
+
+final class TestUserService: UserService {
+    var user = User(name: "Test", status: "Clear", avatar: UIImage(named: "test")!)
+
+    func add(name: String) -> User {
+        if name == user.fullName {
+            status1 = "Clear"
+            avatar = UIImage(named: "test")
+        }
+        return user
+    }
+    
+    
+}
+
+
 
 class ProfileViewController: UIViewController {
-    
+    let currentUser = CurrentUserService()
+    let testUser = TestUserService()
     private var text: String?
+    let imageProccess = ImageProcessor()
     
     let viewForTable: UIView = {
         let view = UIView()
@@ -64,7 +83,6 @@ class ProfileViewController: UIViewController {
 
     let fullNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "King Lion"
         label.textAlignment = .left
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -87,16 +105,14 @@ class ProfileViewController: UIViewController {
     var statusLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.text = "Into the wild"
         label.font = UIFont.boldSystemFont(ofSize: 19)
-
         label.textColor = .darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let avatarImageView: UIImageView = {
-        let avatar = UIImageView(image: UIImage(named: "Lion"))
+        let avatar = UIImageView()
         avatar.isUserInteractionEnabled = true
         avatar.layer.borderWidth = 5
         avatar.layer.borderColor = UIColor.white.cgColor
@@ -133,12 +149,15 @@ class ProfileViewController: UIViewController {
         return table
     }()
     
-    
     override func viewDidLoad() {
+        currentUser.add(name: logInName ?? "Test" )
 
+        statusLabel.text = status1
+        avatarImageView.image = avatar
+        fullNameLabel.text = logInName
         super.viewDidLoad()
-        self.view.backgroundColor = .systemGray5
         #if DEBUG
+        testUser.add(name: logInName ?? "error")
         tableView.backgroundColor = .systemGreen
         #else
         tableView.backgroundColor = .systemGray5

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+public var logInName: String?
 
 class LogInViewController: UIViewController {
     let contentView = UIView()
@@ -164,7 +165,8 @@ class LogInViewController: UIViewController {
     
     
     @objc func tap() {
-        if userNameText.text == "King Lion" {
+        logInName = userNameText.text
+        if userNameText.text == "King Lion" || userNameText.text == "Test" {
         let vc = ProfileViewController()
         self.navigationController?.pushViewController(vc, animated: true)
         } else {

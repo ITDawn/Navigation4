@@ -75,7 +75,6 @@ public struct PhotoStorage {
 }
 let storage = Storage.tableModel
 
-
 public struct Storage {
  public   static let tableModel = [
         SectionPosts(photos: [

@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 import StorageService
-//import iOSIntPackage
 
 class User {
     var fullName: String?
@@ -20,12 +19,10 @@ class User {
         self.avatar = avatar
     }
 }
-<<<<<<< Updated upstream
+
+
 public var avatar: UIImage?
 public var status1: String?
-=======
-//let imageProccess = ImageProcessor()
->>>>>>> Stashed changes
 
 
 
@@ -40,6 +37,7 @@ final class CurrentUserService: UserService {
         if name == user.fullName {
             status1 = "Into the wild"
             avatar = UIImage(named: "Lion")
+            
         }
         return user
     }
@@ -52,6 +50,7 @@ final class TestUserService: UserService {
         if name == user.fullName {
             status1 = "Clear"
             avatar = UIImage(named: "test")
+            
         }
         return user
     }
@@ -65,8 +64,6 @@ class ProfileViewController: UIViewController {
     let currentUser = CurrentUserService()
     let testUser = TestUserService()
     private var text: String?
-    let imageProccess = ImageProcessor()
-    
     let viewForTable: UIView = {
         let view = UIView()
         view.backgroundColor = .none
@@ -147,6 +144,8 @@ class ProfileViewController: UIViewController {
     let profileID = "Profile"
     let myCell = "MyCell"
     
+
+    
     private let tableView:UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -154,8 +153,10 @@ class ProfileViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        currentUser.add(name: logInName ?? "Test" )
+       
 
+        currentUser.add(name: logInName ?? "Test" )
+        tableView.reloadData()
         statusLabel.text = status1
         avatarImageView.image = avatar
         fullNameLabel.text = logInName
@@ -273,6 +274,9 @@ class ProfileViewController: UIViewController {
         }
 
     }
+    
+   
+    
     // Анимация после нажатия на аватар
     @objc func avatarTapp(tapGestureRecognizer: UITapGestureRecognizer) {
        
@@ -398,23 +402,26 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case .Posts:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
             cell.post = storage[0].posts[indexPath.row]
-<<<<<<< Updated upstream
             
-            
-            imageProccess.processImage(sourceImage: storage[0].posts[indexPath.row].image, filter: .colorInvert) { _ in
-// что же тут надо написать)
-            }
-=======
-//            imageProccess.processImage(sourceImage: storage[0].posts[indexPath.row].image, filter: .colorInvert) { _ in
-//
+//            func proccesImage(_ image: UIImage) {
+//                var filteredImage: UIImage?
+//                
+//                cell.imageProccess.processImage(sourceImage: image, filter: .chrome, completion: {[weak, self] storage[0].posts[indexPath.row].image in
+//                    filteredImage = self?.storage[0].posts[indexPath.row].image
+////                    self?.storage[0].posts[indexPath.row].image
+//                })
 //            }
->>>>>>> Stashed changes
+//            cell.imageProccess.processImage(sourceImage:, filter: .chrome, completion: {[weak self] image in
+//                self?.storage[0].posts[indexPath.row].image
+//            })
+            
             cell.selectionStyle = .none
             cell.separatorInset.left = 10
             cell.separatorInset.right = 10
             cell.layoutMargins = UIEdgeInsets.zero
             return cell
         case .Unknown:
+        
             return UITableViewCell()
             
         }

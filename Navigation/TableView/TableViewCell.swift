@@ -9,12 +9,13 @@ import UIKit
 import StorageService
 import iOSIntPackage
 
-class TableViewCell: UITableViewCell {
-    
+public class TableViewCell: UITableViewCell {
+    let imageProccess = ImageProcessor()
+
    var post: Post? {
         
         didSet {
-            deviceImageView.image = post?.image
+            deviceImageView.image = processImage(post!.image, filters: .noir)
             titleLabel.text = post?.author
             descriptionLabel.text = post?.description
             likesLabel.text = post?.likes
@@ -84,13 +85,25 @@ class TableViewCell: UITableViewCell {
     
 }
 extension TableViewCell {
+    
+    public func processImage(_ image: UIImage, filters: ColorFilter) -> UIImage {
+        var filteredImage: UIImage?
+        imageProccess.processImage(sourceImage: image, filter: filters) { procceseedImage in
+            filteredImage = procceseedImage
+        }
+        return filteredImage ?? image
+    }
+    
     private func setupViews(){
         contentView.addSubview(deviceImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(likesLabel)
         contentView.addSubview(viewsLabel)
-
+        
+        
+        
+        
         let constraints = [
 
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

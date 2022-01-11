@@ -13,7 +13,6 @@
 		08623E33271F0AA800A4C856 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 08623E23271F0AA800A4C856 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08623E36271F0AA800A4C856 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08623E21271F0AA800A4C856 /* StorageService.framework */; };
 		08623E37271F0AA800A4C856 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08623E21271F0AA800A4C856 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		08623E3F271F0B0200A4C856 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7DBE426E8429500C066C4 /* Storage.swift */; };
 		08623E41271F0B6800A4C856 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7DBE226E81DF700C066C4 /* TableViewCell.swift */; };
 		08623E45271F0FAC00A4C856 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EE506726B0A0F400FC87B3 /* PostViewController.swift */; };
 		086A854126F97E3A00BF90A8 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A854026F97E3A00BF90A8 /* ProfileTableViewCell.swift */; };
@@ -22,6 +21,7 @@
 		0891756226EED8BF0006A90F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891756126EED8BF0006A90F /* PhotosViewController.swift */; };
 		08A74324272830F000027016 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 08A74323272830F000027016 /* iOSIntPackage */; };
 		08C29BF526F50D6D00B4DA1D /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C29BF426F50D6D00B4DA1D /* PhotoCollectionViewCell.swift */; };
+		08C4515F278E35210097473D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7DBE426E8429500C066C4 /* Storage.swift */; };
 		08DAEEBF27016A4700323891 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DAEEBE27016A4700323891 /* MyCollectionViewCell.swift */; };
 		08DAEEC127016A5E00323891 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DAEEC027016A5E00323891 /* MyTableViewCell.swift */; };
 		08EE505026AB5ABF00FC87B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EE504F26AB5ABF00FC87B3 /* AppDelegate.swift */; };
@@ -509,7 +509,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08623E3F271F0B0200A4C856 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +538,7 @@
 				08EE506426B0924700FC87B3 /* FeedViewController.swift in Sources */,
 				08C29BF526F50D6D00B4DA1D /* PhotoCollectionViewCell.swift in Sources */,
 				0891756226EED8BF0006A90F /* PhotosViewController.swift in Sources */,
+				08C4515F278E35210097473D /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,7 +632,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8067EEE70CD365607B43BD04 /* Pods-StorageService-StorageServiceTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = StorageServiceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -652,7 +651,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 108FD511D3E0F3DED1D5A5B1 /* Pods-StorageService-StorageServiceTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = StorageServiceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -719,7 +717,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -774,7 +772,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -788,10 +786,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F16F6A5EEE7B8DC3365B9FF7 /* Pods-Navigation.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93UF924358;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -808,10 +806,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC876220E2F291C493F30476 /* Pods-Navigation.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93UF924358;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

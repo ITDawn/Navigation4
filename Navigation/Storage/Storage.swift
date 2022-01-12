@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import iOSIntPackage
+//import iOSIntPackage
 
 public struct Post {
    public let author: String
@@ -42,7 +42,7 @@ public struct SectionPosts {
 public struct PhotoSection {
     public let imageCollect:[CollectionPhoto]
 }
-let imageProccess = ImageProcessor()
+//let imageProccess = ImageProcessor()
 
 public struct PhotoStorage {
    public static let photoModel = [
@@ -73,6 +73,15 @@ public struct PhotoStorage {
         ])
     ]
 }
+//let imgprocc = TableViewCell()
+
+//public func processImage(_ image: UIImage, filters: ColorFilter) -> UIImage {
+//    var filteredImage: UIImage?
+//    ImageProcessor().processImage(sourceImage: image, filter: filters) { procceseedImage in
+//        filteredImage = procceseedImage
+//    }
+//    return filteredImage ?? image
+//}
 let storage = Storage.tableModel
 
 public struct Storage {
@@ -81,7 +90,8 @@ public struct Storage {
             Photo(label: "Photos", image: #imageLiteral(resourceName: "4"), image2: #imageLiteral(resourceName: "3"), image3: #imageLiteral(resourceName: "1"), image4: #imageLiteral(resourceName: "2"))
         ],
         posts: [
-            Post(author: "Rick & morty", description: "Жанр: мультфильм, комедия, фантастика. Режиссёр: Уэсли Арчер, Пит Мишелс. В ролях: Джастин Ройланд, Крис Парнелл, Спенсер Грэммер. В центре сюжета - школьник по имени Морти и его дедушка Рик.", image: #imageLiteral(resourceName: "rick"), likes: "Likes: 1030", views: "Views: 2132"),
+            Post(author: "Rick & morty", description: "Жанр: мультфильм, комедия, фантастика. Режиссёр: Уэсли Арчер, Пит Мишелс. В ролях: Джастин Ройланд, Крис Парнелл, Спенсер Грэммер. В центре сюжета - школьник по имени Морти и его дедушка Рик.",
+                 image: #imageLiteral(resourceName: "rick"), likes: "Likes: 1030", views: "Views: 2132"),
             Post(author: "Jaguar Club", description: "aguar XF — люксовый седан бизнес-класса/ спортивный седан, выпускаемый британской автомобилестроительной компанией Jaguar с 2008 года. Является преемником Jaguar S-type.", image: #imageLiteral(resourceName: "jaguar"), likes: "Likes: 230", views: "Views: 2330"),
             Post(author: "vedmak.official", description: "«Ведьмак: Кошмар волка» — анимационный фильм о мире «Ведьмака» от компании Netflix, который вышел на экраны 23 августа 2021 года.", image: #imageLiteral(resourceName: "vedmak"), likes: "Likes: 123", views: "Views: 1000"),
             Post(author: "vesti.rossia", description: "— Если вы имели возможность послушать то, что я говорил недавно в прямом эфире по телевидению, то знаете: я как раз против того, чтобы поднимать пенсионный возраст. И повторяю – пока я президент, это решение не будет принято.", image: #imageLiteral(resourceName: "pukin"), likes: "Likes: -1", views: "Views: 2")

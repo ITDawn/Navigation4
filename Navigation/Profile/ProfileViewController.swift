@@ -167,6 +167,10 @@ class ProfileViewController: UIViewController {
         #else
         tableView.backgroundColor = .systemGray5
         #endif
+        
+        #if RELEASE
+        tableView.backgroundColor = .systemGray5
+        #endif
         self.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         self.statusTextField.addTarget(self, action: #selector(statusChancged(textField:)), for: .editingChanged )
         self.title = "My profile"

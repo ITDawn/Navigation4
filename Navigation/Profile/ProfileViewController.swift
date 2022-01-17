@@ -275,7 +275,7 @@ class ProfileViewController: UIViewController {
     }
     // Анимация после нажатия на аватар
     @objc func avatarTapp(tapGestureRecognizer: UITapGestureRecognizer) {
-       
+      
 
         UIImageView.animateKeyframes(withDuration: 0.5, delay: 0, options: [],
                                      animations: {

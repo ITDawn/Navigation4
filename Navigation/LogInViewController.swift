@@ -9,6 +9,7 @@ import UIKit
 
 public var logInName: String?
 class LogInInspector: LogInViewControllerDelegate {
+    static let shared = LogInInspector()
     func logInCheck(){
     
     }

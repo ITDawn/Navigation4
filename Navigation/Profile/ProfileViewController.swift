@@ -20,12 +20,12 @@ class User {
         self.avatar = avatar
     }
 }
-<<<<<<< Updated upstream
+
 public var avatar: UIImage?
 public var status1: String?
-=======
+
 //let imageProccess = ImageProcessor()
->>>>>>> Stashed changes
+
 
 
 
@@ -65,7 +65,7 @@ class ProfileViewController: UIViewController {
     let currentUser = CurrentUserService()
     let testUser = TestUserService()
     private var text: String?
-    let imageProccess = ImageProcessor()
+//    let imageProccess = ImageProcessor()
     
     let viewForTable: UIView = {
         let view = UIView()
@@ -398,21 +398,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case .Posts:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
             cell.post = storage[0].posts[indexPath.row]
-<<<<<<< Updated upstream
-            
-            
-            imageProccess.processImage(sourceImage: storage[0].posts[indexPath.row].image, filter: .colorInvert) { _ in
-// что же тут надо написать)
-            }
-=======
-//            imageProccess.processImage(sourceImage: storage[0].posts[indexPath.row].image, filter: .colorInvert) { _ in
-//
-//            }
->>>>>>> Stashed changes
-            cell.selectionStyle = .none
-            cell.separatorInset.left = 10
-            cell.separatorInset.right = 10
-            cell.layoutMargins = UIEdgeInsets.zero
+
+         
             return cell
         case .Unknown:
             return UITableViewCell()

@@ -11,16 +11,19 @@ import iOSIntPackage
 
 class TableViewCell: UITableViewCell {
     
-   var post: Post? {
-        
-        didSet {
-            deviceImageView.image = post?.image
-            titleLabel.text = post?.author
-            descriptionLabel.text = post?.description
-            likesLabel.text = post?.likes
-            viewsLabel.text = post?.views
+  
+    let imageProccess = ImageProcessor()
+
+       var post: Post? {
+            
+            didSet {
+                deviceImageView.image = processImage(post!.image, filters: .noir)
+                titleLabel.text = post?.author
+                descriptionLabel.text = post?.description
+                likesLabel.text = post?.likes
+                viewsLabel.text = post?.views
+            }
         }
-    }
     
     
     var deviceImageView:UIImageView = {
@@ -84,6 +87,16 @@ class TableViewCell: UITableViewCell {
     
 }
 extension TableViewCell {
+    
+    
+    public func processImage(_ image: UIImage, filters: ColorFilter) -> UIImage {
+             var filteredImage: UIImage?
+             imageProccess.processImage(sourceImage: image, filter: filters) { procceseedImage in
+                 filteredImage = procceseedImage
+             }
+             return filteredImage ?? image
+         }
+    
     private func setupViews(){
         contentView.addSubview(deviceImageView)
         contentView.addSubview(titleLabel)

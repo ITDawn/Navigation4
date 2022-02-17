@@ -1,5 +1,5 @@
 # Navigation4
-Проект для отработки изученного материала курсов Нетология IOS разработка с нуля
+Application for working out the material of the courses of Netology IOS Developer
 
 Пройденый материал:
 

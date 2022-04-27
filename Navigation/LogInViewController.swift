@@ -8,31 +8,29 @@
 import UIKit
 
 public var logInName: String?
-class LogInInspector: LogInViewControllerDelegate {
-    static let shared = LogInInspector()
-    func logInCheck(){
-    
-    }
+
+protocol LogInViewControllerDelegate {
+    func logInCheck(logIn: String, password: String) -> Bool
 }
 
-class LogInViewController: UIViewController, LogInViewControllerDelegate {
+class LogInViewController: UIViewController {
     
-    func logInCheck() {
-        let vc = ProfileViewController()
-        if userNameText.text == logIn && passwordText.text == password {
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            let alert = UIAlertController(title: "Wrong Username", message: nil, preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "OK", style: .cancel)
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true)
-        }
-    }
-    
+    var logIn: LogInViewControllerDelegate?
+//    func logInCheck() {
+//        let vc = ProfileViewController()
+//        if userNameText.text == logIn && passwordText.text == password {
+//            self.navigationController?.pushViewController(vc, animated: true)
+//            self.dismiss(animated: true)
+//        } else {
+//            let alert = UIAlertController(title: "Wrong Username", message: nil, preferredStyle: .alert)
+//            let cancelAction = UIAlertAction(title: "OK", style: .cancel)
+//            alert.addAction(cancelAction)
+//            self.present(alert, animated: true)
+//        }
+//    }
+//
     let contentView = UIView()
     
-    private let logIn = "King Lion"
-    private let password = "1"
     
     
     let button: UIButton = {
@@ -101,6 +99,7 @@ class LogInViewController: UIViewController, LogInViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+      
         
         
         self.view.addSubview(scrollView)
@@ -189,8 +188,18 @@ class LogInViewController: UIViewController, LogInViewControllerDelegate {
     
     @objc func tap() {
         logInName = userNameText.text
-
-        logInCheck()
-
+        
+        guard let logIn = logIn else { return }
+        if  logIn.logInCheck(logIn: userNameText.text ?? "", password: passwordText.text ?? "")  {
+                let profile = ProfileViewController()
+                self.navigationController?.pushViewController(profile, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Wrong Username", message: nil, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true)
+        }
+        
+       
     }
 }

@@ -17,11 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
+        
+
+        
         let tabBarController = UITabBarController()
         let firstVC = FeedViewController()
         firstVC.view.backgroundColor = .white
         firstVC.tabBarItem = UITabBarItem(title: "Feeds", image: UIImage.init(systemName: "exclamationmark.bubble"), tag: 0)
         let secondVC = LogInViewController()
+//        let logInInspector = LogInInspector()
+        let factoryLogin = MyLogInFactory()
+        secondVC.logIn = factoryLogin.createLogIn()
         secondVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage.init(systemName: "person.crop.circle.fill"), tag: 1)
         let firstNavController = UINavigationController(rootViewController: firstVC)
         let secNavController = UINavigationController(rootViewController: secondVC)

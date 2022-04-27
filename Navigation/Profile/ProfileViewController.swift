@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 import StorageService
-//import iOSIntPackage
 
 class User {
     var fullName: String?
@@ -24,7 +23,6 @@ class User {
 public var avatar: UIImage?
 public var status1: String?
 
-//let imageProccess = ImageProcessor()
 
 
 
@@ -65,7 +63,6 @@ class ProfileViewController: UIViewController {
     let currentUser = CurrentUserService()
     let testUser = TestUserService()
     private var text: String?
-//    let imageProccess = ImageProcessor()
     
     let viewForTable: UIView = {
         let view = UIView()
@@ -161,7 +158,7 @@ class ProfileViewController: UIViewController {
         fullNameLabel.text = logInName
         super.viewDidLoad()
         #if DEBUG
-        testUser.add(name: logInName ?? "error")
+//        testUser.add(name: logInName ?? "error")
         tableView.backgroundColor = .systemGreen
         #else
         tableView.backgroundColor = .systemGray5

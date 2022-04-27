@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import iOSIntPackage
+//import iOSIntPackage
 
 public struct Post {
    public let author: String
@@ -42,7 +42,7 @@ public struct SectionPosts {
 public struct PhotoSection {
     public let imageCollect:[CollectionPhoto]
 }
-let imageProccess = ImageProcessor()
+//let imageProccess = ImageProcessor()
 
 public struct PhotoStorage {
    public static let photoModel = [

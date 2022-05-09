@@ -90,19 +90,21 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
-    let setStatusButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Show status", for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.2823529412, green: 0.5215686275, blue: 0.8, alpha: 1)
-        button.layer.cornerRadius = 14
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    let setStatusButton = CustomButton()
     
+//    let setStatusButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("Show status", for: .normal)
+//        button.backgroundColor = #colorLiteral(red: 0.2823529412, green: 0.5215686275, blue: 0.8, alpha: 1)
+//        button.layer.cornerRadius = 14
+//        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+//        button.layer.shadowRadius = 4
+//        button.layer.shadowColor = UIColor.black.cgColor
+//        button.layer.shadowOpacity = 0.7
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
+//
     var statusLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -163,7 +165,6 @@ class ProfileViewController: UIViewController {
         #else
         tableView.backgroundColor = .systemGray5
         #endif
-        self.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         self.statusTextField.addTarget(self, action: #selector(statusChancged(textField:)), for: .editingChanged )
         self.title = "My profile"
         self.view.addSubview(tableView)
@@ -207,6 +208,7 @@ class ProfileViewController: UIViewController {
     
     func setupTableView() {
         view.addSubview(tableView)
+        setStatusButton.configure(model: CustomButtonModel(title: "Set status"), completion: buttonPressed, shadow: true)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: cellID)
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: profileID)
         tableView.register(MyTableViewCell.self, forCellReuseIdentifier: myCell)

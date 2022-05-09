@@ -19,9 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
 
-        
+        let checkModel = CheckModel()
         let tabBarController = UITabBarController()
-        let firstVC = FeedViewController()
+        let firstVC = FeedViewController(checkModel: checkModel)
         firstVC.view.backgroundColor = .white
         firstVC.tabBarItem = UITabBarItem(title: "Feeds", image: UIImage.init(systemName: "exclamationmark.bubble"), tag: 0)
         let secondVC = LogInViewController()

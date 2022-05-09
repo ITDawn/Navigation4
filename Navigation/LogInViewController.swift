@@ -31,16 +31,10 @@ class LogInViewController: UIViewController {
 //
     let contentView = UIView()
     
+    let button = CustomButton()
+   
     
-    
-    let button: UIButton = {
-        let button = UIButton()
-        button.setTitle("Log in", for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.2823529412, green: 0.5215686275, blue: 0.8, alpha: 1)
-        button.layer.cornerRadius = 10
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+
     
     let logoImage:UIImageView = {
         let logo = UIImageView(image: UIImage(named: "log"))
@@ -48,44 +42,29 @@ class LogInViewController: UIViewController {
         return logo
     }()
     
-    let userNameText: UITextField = {
-        let textField = UITextField()
-        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
-        textField.leftView = paddingView
-        textField.leftViewMode = .always
-        textField.placeholder = "Email or phone"
-        textField.textColor = .black
-        textField.backgroundColor = .systemGray6
-        textField.clipsToBounds = true
-        textField.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
-        textField.layer.cornerRadius = 10
-        textField.layer.borderWidth = 0.5
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        textField.autocapitalizationType = .none
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-    
-    let passwordText: UITextField = {
-        let textField = UITextField()
-        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
-        textField.leftView = paddingView
-        textField.leftViewMode = .always
-        textField.placeholder = "Password"
-        textField.textColor = .black
-        textField.clipsToBounds = true
-        textField.backgroundColor = .systemGray6
-        textField.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        textField.layer.cornerRadius = 10
-        textField.layer.borderWidth = 0.5
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        textField.isSecureTextEntry = true
-        textField.autocapitalizationType = .none
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
+   public let userNameText = CustomTextField()
+   public let passwordText = CustomTextField()
+
+//
+//   public let passwordText: UITextField = {
+//        let textField = UITextField()
+//        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+//        textField.leftView = paddingView
+//        textField.leftViewMode = .always
+//        textField.placeholder = "Password"
+//        textField.textColor = .black
+//        textField.clipsToBounds = true
+//        textField.backgroundColor = .systemGray6
+//        textField.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+//        textField.layer.cornerRadius = 10
+//        textField.layer.borderWidth = 0.5
+//        textField.layer.borderColor = UIColor.lightGray.cgColor
+//        textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+//        textField.isSecureTextEntry = true
+//        textField.autocapitalizationType = .none
+//        textField.translatesAutoresizingMaskIntoConstraints = false
+//        return textField
+//    }()
     
     
     let scrollView:UIScrollView = {
@@ -99,14 +78,15 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-      
-        
-        
         self.view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         contentView.backgroundColor = .white
         contentView.addSubview(button)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+        userNameText.configure(holder: "Email", maskCorners: .Up, hidenText: false)
+        passwordText.configure(holder: "Password", maskCorners: .Down, hidenText: true)
+      
+        button.configure(model: CustomButtonModel(title: "Log in"), completion: tap, shadow: false)
         contentView.addSubview(logoImage)
         contentView.addSubview(userNameText)
         contentView.addSubview(passwordText)
@@ -148,6 +128,8 @@ class LogInViewController: UIViewController {
         ])
         
     }
+
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self,
@@ -184,11 +166,8 @@ class LogInViewController: UIViewController {
         scrollView.verticalScrollIndicatorInsets = .zero
         
     }
-    
-    
     @objc func tap() {
         logInName = userNameText.text
-        
         guard let logIn = logIn else { return }
         if  logIn.logInCheck(logIn: userNameText.text ?? "", password: passwordText.text ?? "")  {
                 let profile = ProfileViewController()
@@ -199,7 +178,5 @@ class LogInViewController: UIViewController {
             alert.addAction(cancelAction)
             self.present(alert, animated: true)
         }
-        
-       
     }
 }
